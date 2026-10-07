@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code History</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f7fb;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 7px 12px;
+            margin: 2px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .view {
+            background: #007bff;
+        }
+
+        .details {
+            background: #17a2b8;
+        }
+
+        .download {
+            background: #28a745;
+        }
+
+        .track {
+            background: #6f42c1;
+        }
+
+        .delete {
+            background: #dc3545;
+        }
+
+        .new-qr {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 16px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>QR Code History</h1>
+
+    <form action="/history" method="GET" style="margin-bottom:20px;">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search QR ID, Name or Data"
+            style="padding:10px; width:300px; border:1px solid #ccc; border-radius:6px;"
+        >
+
+        <button
+            type="submit"
+            style="padding:10px 18px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;">
+            Search
+        </button>
+
+        <a
+            href="/history"
+            style="padding:10px 18px; background:#555; color:white; text-decoration:none; border-radius:6px;">
+            Clear
+        </a>
+
+    </form>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>QR ID</th>
+                <th>Name</th>
+                <th>Data</th>
+                <th>Created At</th>
+                <th>Total Scans</th>
+                <th>Action</th>
+            </tr>
+
+            {% for qr in qr_codes %}
+
+            <tr>
+
+                <td>{{ qr[0] }}</td>
+
+                <td>{{ qr[1] }}</td>
+
+                <td>{{ qr[2] }}</td>
+
+                <td>{{ qr[3] }}</td>
+
+                <td>{{ qr[4] }}</td>
+
+                <td>
+
+                    <a class="btn view"
+                       href="/view/{{ qr[0] }}">
+                        View QR
+                    </a>
+
+                    <a class="btn details"
+                       href="/qr-details/{{ qr[0] }}">
+                        QR Details
+                    </a>
+
+                    <a class="btn download"
+                       href="/download/{{ qr[0] }}">
+                        Download
+                    </a>
+
+                    <a class="btn track"
+                       href="/track/{{ qr[0] }}">
+                        Track
+                    </a>
+
+                    <a class="btn delete"
+                       href="/delete/{{ qr[0] }}"
+                       onclick="return confirm('Are you sure you want to delete this QR Code?');">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <a class="new-qr" href="/">
+        + Generate New QR
+    </a>
+
+</body>
+
+</html>

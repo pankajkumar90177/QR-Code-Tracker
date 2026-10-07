@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Generated</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 550px;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #222;
+            margin: 0;
+        }
+
+        .success {
+            color: #28a745;
+            font-weight: bold;
+            margin: 10px 0 20px;
+        }
+
+        .qr-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 280px;
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        .info {
+            text-align: left;
+            background: #f5f7fb;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .info p {
+            margin: 5px 0;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .new {
+            background: #28a745;
+        }
+
+        .history {
+            background: #6f42c1;
+        }
+
+        .dashboard {
+            background: #007bff;
+        }
+
+        .details {
+            background: #17a2b8;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 22px 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .btn-container {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>QR Code Generated</h1>
+
+        <p class="success">
+            QR Code Generated Successfully
+        </p>
+
+        <div class="qr-box">
+
+            <img
+                src="{{ qr_image }}"
+                alt="Generated QR Code"
+            >
+
+        </div>
+
+        <div class="info">
+
+            <p>
+                <b>Name:</b> {{ name }}
+            </p>
+
+            <p>
+                <b>Data:</b> {{ data }}
+            </p>
+
+            <p>
+                <b>QR ID:</b> {{ qr_id }}
+            </p>
+
+        </div>
+
+        <div class="btn-container">
+
+            <a class="btn new" href="/">
+                + Generate New QR
+            </a>
+
+            <a class="btn history" href="/history">
+                QR History
+            </a>
+
+            <a class="btn dashboard" href="/dashboard">
+                Dashboard
+            </a>
+
+            <a class="btn details" href="/qr-details/{{ qr_id }}">
+                QR Details
+            </a>
+
+        </div>
+
+        <div class="footer">
+            QR Tracker System
+        </div>
+
+    </div>
+
+</body>
+
+</html>

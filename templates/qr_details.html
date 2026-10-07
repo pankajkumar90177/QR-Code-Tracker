@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Scan Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f7fb;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .info {
+            line-height: 1.8;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            background: #6f42c1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a class="btn" href="/history">
+        Back to QR History
+    </a>
+
+    <h1>QR Scan Details</h1>
+
+    <div class="card">
+
+        <div class="info">
+
+            <p><b>QR ID:</b> {{ qr_id }}</p>
+
+            <p><b>Name:</b> {{ qr[0] }}</p>
+
+            <p><b>Data:</b> {{ qr[1] }}</p>
+
+            <p><b>Total Scans:</b> {{ qr[2] }}</p>
+
+        </div>
+
+    </div>
+
+    <h2>Scan History</h2>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Scanned At</th>
+                <th>IP Address</th>
+                <th>Device / Browser</th>
+            </tr>
+
+            {% for scan in scan_details %}
+
+            <tr>
+                <td>{{ scan[0] }}</td>
+                <td>{{ scan[1] }}</td>
+                <td>{{ scan[2] }}</td>
+                <td>{{ scan[3] }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

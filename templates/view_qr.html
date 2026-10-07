@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View QR Code</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #222;
+        }
+
+        .qr-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        img {
+            width: 280px;
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        .info {
+            text-align: left;
+            background: #f5f7fb;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .info p {
+            margin: 5px 0;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: block;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .download {
+            background: #28a745;
+        }
+
+        .details {
+            background: #17a2b8;
+        }
+
+        .history {
+            background: #6f42c1;
+        }
+
+        .dashboard {
+            background: #007bff;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 22px 16px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="icon">
+            QR
+        </div>
+
+        <h1>View QR Code</h1>
+
+        <div class="qr-box">
+
+            <img
+                src="{{ qr[3] }}"
+                alt="QR Code"
+            >
+
+        </div>
+
+        <div class="info">
+
+            <p>
+                <b>QR ID:</b> {{ qr[0] }}
+            </p>
+
+            <p>
+                <b>Name:</b> {{ qr[1] }}
+            </p>
+
+            <p>
+                <b>Data:</b> {{ qr[2] }}
+            </p>
+
+            <p>
+                <b>Created:</b> {{ qr[4] }}
+            </p>
+
+            <p>
+                <b>Total Scans:</b> {{ qr[5] }}
+            </p>
+
+        </div>
+
+        <div class="buttons">
+
+            <a class="btn download"
+               href="/download/{{ qr[0] }}">
+                Download QR
+            </a>
+
+            <a class="btn details"
+               href="/qr-details/{{ qr[0] }}">
+                QR Details
+            </a>
+
+            <a class="btn history"
+               href="/history">
+                QR History
+            </a>
+
+            <a class="btn dashboard"
+               href="/dashboard">
+                Dashboard
+            </a>
+
+        </div>
+
+        <div class="footer">
+            QR Tracker System
+        </div>
+
+    </div>
+
+</body>
+
+</html>

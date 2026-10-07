@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Date-wise Scan Report</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f7fb;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .filter-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            background: #6f42c1;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Date-wise Scan Report</h1>
+
+    <a class="btn" href="/dashboard">
+        Back to Dashboard
+    </a>
+
+    <div class="filter-box">
+
+        <form action="/date-report" method="GET">
+
+            <label>
+                <b>Select Date:</b>
+            </label>
+
+            <input
+                type="date"
+                name="date"
+                value="{{ selected_date }}"
+                required
+            >
+
+            <button type="submit">
+                View Report
+            </button>
+
+        </form>
+
+    </div>
+
+    <h2>
+        Scan Report: {{ selected_date }}
+    </h2>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>QR ID</th>
+                <th>Scanned At</th>
+                <th>IP Address</th>
+                <th>Device / Browser</th>
+            </tr>
+
+            {% for scan in date_scans %}
+
+            <tr>
+                <td>{{ scan[0] }}</td>
+                <td>{{ scan[1] }}</td>
+                <td>{{ scan[2] }}</td>
+                <td>{{ scan[3] }}</td>
+                <td>{{ scan[4] }}</td>
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="5">
+                    No scan records found for this date.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>
