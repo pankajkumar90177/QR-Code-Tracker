@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IP / Device Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f7fb;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            background: #6f42c1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>IP / Device Details</h1>
+
+    <a class="btn" href="/dashboard">
+        Back to Dashboard
+    </a>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>IP Address</th>
+                <th>Device / Browser</th>
+                <th>Total Scans</th>
+                <th>Last Scanned</th>
+            </tr>
+
+            {% for device in devices %}
+
+            <tr>
+                <td>{{ device[0] }}</td>
+                <td>{{ device[1] }}</td>
+                <td>{{ device[2] }}</td>
+                <td>{{ device[3] }}</td>
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="4">
+                    No device records found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

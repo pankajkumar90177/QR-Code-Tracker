@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Tracker Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            padding: 25px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .links {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .history {
+            background: #6f42c1;
+        }
+
+        .newqr {
+            background: #28a745;
+        }
+
+        .logs {
+            background: #fd7e14;
+        }
+
+        .recent {
+            background: #17a2b8;
+        }
+
+        .today {
+            background: #20c997;
+        }
+
+        .date {
+            background: #6610f2;
+        }
+
+        .device {
+            background: #795548;
+        }
+
+        .excel {
+            background: #198754;
+        }
+
+        .pdf {
+            background: #dc3545;
+        }
+
+        .logout {
+            background: #dc3545;
+        }
+
+        @media (max-width: 1000px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 16px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .number {
+                font-size: 28px;
+            }
+
+            .links {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>QR Tracker Dashboard</h1>
+    </div>
+
+    <div class="container">
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total QR Codes</h3>
+                <div class="number">{{ total_qr }}</div>
+            </div>
+
+            <div class="card">
+                <h3>Total Scans</h3>
+                <div class="number">{{ total_scans }}</div>
+            </div>
+
+            <div class="card">
+                <h3>Today's QR Codes</h3>
+                <div class="number">{{ today_qr }}</div>
+            </div>
+
+            <div class="card">
+                <h3>Today's Scans</h3>
+                <div class="number">{{ today_scans }}</div>
+            </div>
+
+            <div class="card">
+                <h3>Total Scan Logs</h3>
+                <div class="number">{{ total_scan_logs }}</div>
+            </div>
+
+        </div>
+
+        <div class="links">
+
+            <a class="btn newqr" href="/">
+                + Generate QR
+            </a>
+
+            <a class="btn history" href="/history">
+                QR History
+            </a>
+
+            <a class="btn logs" href="/scan-logs">
+                Scan Logs
+            </a>
+
+            <a class="btn recent" href="/recent-scans">
+                Recent Scans
+            </a>
+
+            <a class="btn today" href="/today-scans">
+                Today's Scans
+            </a>
+
+            <a class="btn date" href="/date-report">
+                Date-wise Report
+            </a>
+
+            <a class="btn device" href="/device-details">
+                IP / Device Details
+            </a>
+
+            <a class="btn excel" href="/export-excel">
+                Export Excel
+            </a>
+
+            <a class="btn pdf" href="/export-pdf">
+                Export PDF
+            </a>
+
+            <a class="btn logout" href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
